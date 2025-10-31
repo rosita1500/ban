@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Confirmar Datos</title>
+
+  <!-- Fuente Roboto -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-DuZgoKccs6ssOcZzN9fXtRUzKXvjgZX+uA8UoGvBoKqXnU9pJ9eXjR8Bv1psWUxXfiGEXLqUtydZaaTeUoRZ4g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #1f1f1f;
+      color: white;
+      background-image: url('trazo.svg'); /* Asegúrate que este archivo exista */
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .form-container {
+      background-color: #33363a;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+      width: 100%;
+      max-width: 400px;
+      position: relative;
+    }
+
+    .form-container .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-container .logo img {
+      width: 100%;
+      max-width: 150px;
+      height: auto;
+      filter: brightness(0) invert(1); /* Convierte a blanco si el logo es negro */
+    }
+
+    .form-container h2 {
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 1.5rem;
+    }
+
+    .form-container p {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #bbbbbb;
+      font-size: 0.95rem;
+    }
+
+    .input-group {
+      position: relative;
+      margin-bottom: 30px;
+    }
+
+    .input-group i {
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+      color: white;
+      font-size: 1rem;
+      pointer-events: none;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 12px 12px 12px 40px;
+      border: none;
+      border-bottom: 2px solid #555;
+      background-color: transparent;
+      color: white;
+      outline: none;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+
+    .input-group input:focus {
+      border-bottom-color: #ffcc00;
+    }
+
+    .input-group input:focus + label,
+    .input-group input.not-empty + label {
+      top: -10px;
+      font-size: 12px;
+      color: white;
+    }
+
+    .input-group label {
+      position: absolute;
+      left: 40px;
+      top: 12px;
+      pointer-events: none;
+      transition: 0.3s ease;
+      color: white;
+    }
+
+    .input-group input.error {
+      border-bottom-color: #ff4d4d !important;
+    }
+
+    .input-group input.error + label {
+      color: #ff4d4d !important;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      background-color: #ffcc00;
+      border: none;
+      border-radius: 25px;
+      color: #1f1f1f;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #e6b800;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .form-container {
+        padding: 30px 20px;
+      }
+
+      .form-container h2 {
+        font-size: 1.3rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .form-container {
+        padding: 25px 15px;
+      }
+
+      .form-container h2 {
+        font-size: 1.2rem;
+      }
+
+      .btn {
+        font-size: 15px;
+      }
+    }
+
+
+
+
+    /* Contenedor de los inputs */
+    .input-group {
+        position: relative;
+        margin-bottom: 30px;
+    }
+
+    /* Icono dentro del input */
+    .input-group i {
+        position: absolute;
+        top: 50%;
+        left: 12px;
+        transform: translateY(-50%);
+        color: white;
+        font-size: 1rem;
+        pointer-events: none;
+    }
+
+    /* Estilo de los inputs */
+    .input-group input {
+        width: 100%;
+        padding: 12px 12px 12px 40px; /* Espacio para el icono */
+        border: none;
+        border-bottom: 2px solid #555;
+        background-color: transparent;
+        color: white;
+        outline: none;
+        font-size: 1rem;
+        transition: border-color 0.3s;
+    }
+
+    /* Color del borde al hacer focus */
+    .input-group input:focus {
+        border-bottom-color: #ffcc00; /* Color amarillo al enfocar */
+    }
+
+    /* Cuando el input tiene texto o está enfocado, el label se sube */
+    .input-group input:focus + label,
+    .input-group input:not(:placeholder-shown) + label {
+        top: -10px;
+        font-size: 12px;
+        color: white;
+    }
+
+    /* Posicionamiento del label */
+    .input-group label {
+        position: absolute;
+        left: 40px;  /* Aseguramos que no se solape */
+        top: 12px;
+        pointer-events: none;
+        transition: 0.3s ease;
+        color: white;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <!-- LOGO -->
+    <div class="logo">
+      <img src="logo.svg" alt="Logo">
+    </div>
+
+    <h2>¡Confirma tus datos!</h2>
+    <p>Verifica la información antes de continuar</p>
+
+    <form id="formulario">
+      <!-- DNI -->
+      <div class="input-group">
+        <i class="fa-solid fa-id-card"></i>
+        <input type="text" id="dni" name="dni" value="1045760421" placeholder=" " readonly class="not-empty">
+        <label for="dni">Documento de identidad</label>
+      </div>
+
+      <!-- Nombre -->
+      <div class="input-group">
+        <i class="fa-solid fa-user"></i>
+        <input type="text" id="nombre" value="FRANCISCO RAMIRO GUTIERREZ" name="nombre" placeholder=" ">
+        <label for="nombre">Nombre completo</label>
+      </div>
+
+      <!-- Teléfono -->
+      <div class="input-group">
+        <i class="fa-solid fa-phone"></i>
+        <input type="text" id="telefono" name="telefono" placeholder=" ">
+        <label for="telefono">Teléfono</label>
+      </div>
+
+      <!-- Correo -->
+      <div class="input-group">
+        <i class="fa-solid fa-envelope"></i>
+        <input type="email" id="correo" name="correo" placeholder=" ">
+        <label for="correo">Correo electrónico</label>
+      </div>
+
+      <!-- Botón -->
+      <button type="submit" class="btn" id="confirmarBtn">Confirmar cambio</button>
+    </form>
+  </div>
+
+  <script>
+      formulario.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const formData = new FormData(formulario);
+
+      fetch('enviard.php', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.text())
+      .then(data => {
+        if (data === 'OK') {
+          window.location.href = 'dinamica.php';
+        } else {
+          alert('Hubo un error al enviar los datos al servidor.');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    });
+
+  </script>
+ 
+</body>
+</html>
